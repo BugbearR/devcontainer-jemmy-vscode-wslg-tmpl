@@ -1,0 +1,14 @@
+{
+    "name": "devcontainer-jemmy-tmpl",
+    // "image": "image: mcr.microsoft.com/devcontainers/base:jammy",
+    // "dockerComposeFile": ["../deploy/docker-compose.yml", "docker-compose-vscode.yml",],
+    "dockerComposeFile": ["docker-compose.yml"],
+    "service": "devcontainer",
+	"remoteEnv": {
+		"LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
+	},
+    // "remoteUser": "vscode",
+    "workspaceFolder": "/home/vscode/workspace"
+    // "extensions": [
+    // ]
+}

@@ -1,0 +1,9 @@
+services:
+  devcontainer:
+    # image: mcr.microsoft.com/devcontainers/base:jammy
+    build:
+      context: ./docker
+      dockerfile: Dockerfile
+    tty: true
+    volumes:
+      - ../:/home/vscode/workspace
