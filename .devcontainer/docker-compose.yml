@@ -1,9 +1,27 @@
 services:
   devcontainer:
+    # see https://blog.mohyo.net/2022/02/11591/#NVIDIA_GPU
     # image: mcr.microsoft.com/devcontainers/base:jammy
     build:
       context: ./docker
       dockerfile: Dockerfile
+    environment:
+      - DISPLAY=:0
+      - WAYLAND_DISPLAY=$WAYLAND_DISPLAY
+      - XDG_RUNTIME_DIR=/home/vscode/.xdg
+      - PULSE_SERVER=$PULSE_SERVER
+      - LD_LIBRARY_PATH=/usr/lib/wsl/lib
+    restart: always
     tty: true
     volumes:
       - ../:/home/vscode/workspace
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /mnt/wslg:/mnt/wslg
+      - /usr/lib/wsl:/usr/lib/wsl
+    devices:
+      - /dev/dxg:/dev/dxg
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
